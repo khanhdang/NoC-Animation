@@ -8,7 +8,7 @@ int flit_size = 50;
 int cols = 7;
 int rows = 5;
 Router[][] layer;
-int packet_num = 200;
+int packet_num = 60000;
 //Packet[] p1;
 ArrayList p1;
 PVector S, D;
@@ -30,11 +30,11 @@ void setup() {
   }
   //p1 =  new Packet[packet_num];
   p1 =  new ArrayList();
-  S = new PVector(int(random(7)), int(random(5)));
-  D = new PVector(int(random(7)), int(random(5)));
+  //S = new PVector(int(random(7)), int(random(5)));
+  //D = new PVector(int(random(7)), int(random(5)));
   for (int i = 0; i<packet_num; i++) {
-    //S = new PVector(int(random(7)), int(random(5)));
-    //D = new PVector(int(random(7)), int(random(5)));
+    S = new PVector(int(random(cols)), int(random(rows)));
+    D = new PVector(int(random(cols)), int(random(rows)));
     p1.add( new Packet(S, D, i));
   }
 
@@ -57,10 +57,10 @@ void draw() {
       p.run = true;
     }
 
-    if ((p.current.x != p.Source.x)) {
+    if ((p.current.x >= p.Source.x+1 || p.current.x <= p.Source.x-1)) {
       r_indx++;
-    } else if (p.current.y >= p.Source.y+1 || p.current.y <= p.Source.y-1) {
-      r_indx++;
+    //} else if (p.current.y >= p.Source.y+1 || p.current.y <= p.Source.y-1) {
+    //  r_indx++;
     }
   }
   for (int i = p1.size()-1; i>=0; i--){
@@ -77,8 +77,8 @@ void draw() {
         p1.remove(i);
         //packet_num--;
         completed_num++;
-       print("\nDONE: "+str(completed_num));
-       if (completed_num == packet_num) print("\nDONE ALL !!!!!!!!!!");
+       //print("\nDONE: "+str(completed_num));
+       //if (completed_num == packet_num) print("\nDONE ALL !!!!!!!!!!");
   
       }
     }
