@@ -4,7 +4,7 @@ float offset_ratio = 0.25;
 PFont f;  
 float Text_size = 20;
 int tile_size = 200;
-int flit_size = 20;
+int flit_size = 50;
 int cols = 7;
 int rows = 5;
 Router[][] layer;

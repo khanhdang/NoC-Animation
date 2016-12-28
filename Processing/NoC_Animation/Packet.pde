@@ -6,7 +6,7 @@ class Packet {
   PVector current;   // x,y location
   PVector Source, Destination;
   PVector Acce;
-  int Speed = 10;
+  int Speed = 5;
   Packet(PVector S, PVector D){
     Source = S;
     Destination = D;
@@ -40,14 +40,14 @@ class Packet {
     Pos.y = Pos.y+Acce.y;
   }
   void ResetRoute(){
-    if (Pos == Destination){
+    if (ceil(Pos.x/tile_size) == Destination.x && ceil(Pos.y/tile_size) == Destination.y){
     Pos.x = Source.x;
     Pos.y = Source.y;
     }
   }
   void DrawFlit(){
     translate(Pos.x+tile_size/2-flit_size/2, Pos.y+tile_size/2-flit_size/2);
-    print(str(Source.x)+ "--"+str(Source.x)+"\n");
+    //print(str(Pos.x)+ "--"+str(Pos.x)+"\n");
     stroke(0);
     strokeWeight(1);
     fill(255,0,0);
