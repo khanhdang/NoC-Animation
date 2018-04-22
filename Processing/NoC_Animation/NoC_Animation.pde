@@ -1,14 +1,15 @@
-// Define 
+// Define color and sizes
 color RouterColor = color(220);
 float offset_ratio = 0.25;
 PFont f;  
-float Text_size = 20;
-int tile_size = 200;
-int flit_size = 50;
-int cols = 7;
-int rows = 5;
+float Text_size = 15;
+int tile_size = 120;
+int flit_size = 30;
+int cols = 15;
+int rows = 7;
+
 Router[][] layer;
-int packet_num = 60000;
+int packet_num = 100;
 //Packet[] p1;
 ArrayList p1;
 PVector S, D;
@@ -17,10 +18,11 @@ PVector p0addr;
 
 void setup() {
 
-  size(1400, 1000);
-  //fullScreen();
+  //size(1400, 1000);
+  fullScreen();
   f = createFont("Arial", Text_size, true);
-
+  cols = width/tile_size;
+  rows = height/tile_size;
   layer = new Router[cols][rows];
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
@@ -35,7 +37,7 @@ void setup() {
   for (int i = 0; i<packet_num; i++) {
     S = new PVector(int(random(cols)), int(random(rows)));
     D = new PVector(int(random(cols)), int(random(rows)));
-    p1.add( new Packet(S, D, i));
+    p1.add(new Packet(S, D, i));
   }
 
 }
@@ -91,15 +93,15 @@ void ConnectRouter() {
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows-1; j++) {
       stroke(0);
-      strokeWeight(10);
-      line(layer[i][j].IO_South.x, layer[i][j].IO_South.y, layer[i][j+1].IO_North.x, layer[i][j+1].IO_North.y);
+      strokeWeight(5);
+      arrowLine(layer[i][j].IO_South.x, layer[i][j].IO_South.y, layer[i][j+1].IO_North.x, layer[i][j+1].IO_North.y,radians(30), radians(30),true);
     }
   }
   for (int i = 0; i < cols-1; i++) {
     for (int j = 0; j < rows; j++) {
       stroke(0);
-      strokeWeight(10);
-      line(layer[i][j].IO_East.x, layer[i][j].IO_East.y, layer[i+1][j].IO_West.x, layer[i+1][j].IO_West.y);
+      strokeWeight(5);
+      arrowLine(layer[i][j].IO_East.x, layer[i][j].IO_East.y, layer[i+1][j].IO_West.x, layer[i+1][j].IO_West.y,radians(30), radians(30), true);
     }
   }
 }
